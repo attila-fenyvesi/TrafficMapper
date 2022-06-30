@@ -1,0 +1,17 @@
+file(GLOB_RECURSE resource_files ${CMAKE_CURRENT_SOURCE_DIR}/*.*)
+foreach(res_file ${resource_files})
+	file(RELATIVE_PATH rel_path ${CMAKE_CURRENT_SOURCE_DIR} ${res_file})
+	string(FIND ${rel_path} / is_valid)
+	if (NOT is_valid EQUAL -1)
+		list(APPEND rel_paths ${rel_path})
+	endif()
+endforeach()
+
+# Building QRC file
+set(qrc_file ${CMAKE_CURRENT_SOURCE_DIR}/resources.qrc)
+file(WRITE ${qrc_file} "")
+file(APPEND ${qrc_file} "<RCC>\n    <qresource prefix=\"/\">\n")
+foreach(rel_path ${rel_paths})
+	file(APPEND ${qrc_file} "        <file>${rel_path}</file>\n")
+endforeach()
+file(APPEND ${qrc_file} "    </qresource>\n</RCC>")
