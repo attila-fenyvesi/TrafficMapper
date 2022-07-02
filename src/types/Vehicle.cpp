@@ -38,7 +38,8 @@ using TrackerAlg = Tracker::OpticalTrackerAlgorithm;
 Vehicle::Vehicle()
   : m_isTracked(true), m_timeSinceLastHit(0), m_vehicleType(VehicleType::undefined), m_firstFrame(0), m_lastFrame(0),
     m_mutex()
-{}
+{
+}
 
 Vehicle::Vehicle(const int frameIdx, const Detection & detection)
   : m_isTracked(true), m_timeSinceLastHit(0), m_vehicleType(VehicleType::undefined), m_firstFrame(frameIdx),
@@ -437,16 +438,16 @@ inline void
 inline void
   Vehicle::updateForwardTracker(const FrameBuffer & frameBuffer)
 {
-    //cv::Rect2d newTrack;
+    // cv::Rect2d newTrack;
     stopTracking();
 
-    //if (m_tracker->update(*(frameBuffer.back()), newTrack)) {
-    //    pushBackDetection(m_lastFrame + 1, newTrack);
-    //    if (++m_timeSinceLastHit == Tracker::paramTrackingDistance())
-    //        stopTracking();
-    //} else {
-    //    stopTracking();
-    //}
+    // if (m_tracker->update(*(frameBuffer.back()), newTrack)) {
+    //     pushBackDetection(m_lastFrame + 1, newTrack);
+    //     if (++m_timeSinceLastHit == Tracker::paramTrackingDistance())
+    //         stopTracking();
+    // } else {
+    //     stopTracking();
+    // }
 }
 
 inline void
